@@ -25,4 +25,5 @@ build:
     - script:
       name: run test
       code: |
-        npm run test -- --single-run
+        /usr/bin/google-chrome-unstable --headless --disable-gpu --remote-debugging-port=9222
+        # npm run test -- --single-run
