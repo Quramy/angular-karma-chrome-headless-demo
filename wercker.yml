@@ -1,4 +1,4 @@
-box: quramy/node-chrome-unstable
+box: node
 build:
   steps:
     - script:
@@ -9,6 +9,15 @@ build:
       name: install dependencies
       code: |
         HOME=$YARN_CACHE yarn
+    - script:
+      name: install chrome headless
+      code: |
+        apt-get update -y
+        apt-get install -y ca-certificates apt-transport-https ttf-wqy-zenhei ttf-unfonts-core
+        wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+        echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
+        apt-get update -y
+        apt-get install -y google-chrome-unstable
     - script:
       name: set browser
       code: |
