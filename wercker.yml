@@ -18,3 +18,11 @@ build:
         echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
         apt-get update -y
         apt-get install -y google-chrome-unstable
+    - script:
+      name: set browser
+      code: |
+        export CHROME_BIN=/usr/bin/google-chrome-unstable
+    - script:
+      name: run test
+      code: |
+        npm run test -- --single-run
